@@ -2,6 +2,7 @@ package com.calculator.android.calculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class CalculatorActivity extends AppCompatActivity {
@@ -13,6 +14,12 @@ public class CalculatorActivity extends AppCompatActivity {
     private Button mDotButton;
     private Button mEqualsButton;
     private Button[] mNumButtons;
+    private final int[] mNumButtonIds = {
+            R.id.button0,
+            R.id.button1, R.id.button2, R.id.button3,
+            R.id.button4, R.id.button5, R.id.button6,
+            R.id.button7, R.id.button8, R.id.button9,
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +28,19 @@ public class CalculatorActivity extends AppCompatActivity {
 
         mAddButton = (Button) findViewById(R.id.button_add);
         mSubButton = (Button) findViewById(R.id.button_sub);
-        mAddButton = (Button) findViewById(R.id.button_mul);
+        mMulButton = (Button) findViewById(R.id.button_mul);
         mAddButton = (Button) findViewById(R.id.button_div);
-        mAddButton = (Button) findViewById(R.id.button_dot);
-        mAddButton = (Button) findViewById(R.id.button_equals);
-        mAddButton = (Button) findViewById(R.id.button1);
-        mAddButton = (Button) findViewById(R.id.button2);
-        mAddButton = (Button) findViewById(R.id.button3);
-        mAddButton = (Button) findViewById(R.id.button4);
-        mAddButton = (Button) findViewById(R.id.button5);
-        mAddButton = (Button) findViewById(R.id.button6);
-        mAddButton = (Button) findViewById(R.id.button7);
-        mAddButton = (Button) findViewById(R.id.button8);
-        mAddButton = (Button) findViewById(R.id.button9);
-        mAddButton = (Button) findViewById(R.id.button0);
+        mDotButton = (Button) findViewById(R.id.button_dot);
+        mEqualsButton = (Button) findViewById(R.id.button_equals);
+        mNumButtons = new Button[mNumButtonIds.length];
+        for (int i = 0; i < mNumButtons.length; i++) {
+            mNumButtons[i] = (Button) findViewById(mNumButtonIds[i]);
+            mNumButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
     }
 }
