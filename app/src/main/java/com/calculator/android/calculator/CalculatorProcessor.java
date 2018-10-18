@@ -1,6 +1,8 @@
 package com.calculator.android.calculator;
-
-public class Calc_Processor {
+/*
+* Class for performing
+* */
+public class CalculatorProcessor {
     public static void checkOperation(double num1, double num2, String operator) {
         if (operator.equals("+")) {
             add(num1, num2);
@@ -20,22 +22,29 @@ public class Calc_Processor {
 
     }
 
-    public double add(double num1, double num2) {
+    /**
+     * Created by: Rohan Paul
+     *
+     * Adds two double numbers
+     *
+     */
+    public static double add(double num1, double num2) {
         return (num1 + num2);
     }
 
-    public double subtract(double num1, double num2) {
+    public static double subtract(double num1, double num2) {
         return (num1 - num2);
     }
 
-    public double multiply(double num1, double num2) {
+    public static double multiply(double num1, double num2) {
         return (num1 * num2);
     }
 
-    public double divide(double num1, double num2) {
+    public static double divide(double num1, double num2) {
         return (num1 / num2);
     }
-    public void invalid() {
+
+    public static void invalid() {
         System.out.println("Invalid operator. Please try again.");
     }
 }
