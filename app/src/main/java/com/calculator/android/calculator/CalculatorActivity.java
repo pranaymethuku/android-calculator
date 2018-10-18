@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class CalculatorActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class CalculatorActivity extends AppCompatActivity {
             R.id.button4, R.id.button5, R.id.button6,
             R.id.button7, R.id.button8, R.id.button9,
     };
+    //private int[] numProcess = new int[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,11 @@ public class CalculatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         mAddButton = (Button) findViewById(R.id.button_add);
+        mAddButton.setOnClickListener();
+
         mSubButton = (Button) findViewById(R.id.button_sub);
         mMulButton = (Button) findViewById(R.id.button_mul);
+        mDivButton = (Button) findViewById(R.id.button_div);
         mAddButton = (Button) findViewById(R.id.button_div);
         mDotButton = (Button) findViewById(R.id.button_dot);
         mEqualsButton = (Button) findViewById(R.id.button_equals);
@@ -38,9 +43,12 @@ public class CalculatorActivity extends AppCompatActivity {
             mNumButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String buttonValue = ((Button) v).getText().toString();
 
+                    Toast.makeText(CalculatorActivity.this, "Clicked " + buttonValue, Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
+
 }

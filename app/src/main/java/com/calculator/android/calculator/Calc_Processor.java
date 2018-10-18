@@ -20,22 +20,23 @@ public class Calc_Processor {
 
     }
 
-    public double add(double num1, double num2) {
+    public static double add(double num1, double num2) {
         return (num1 + num2);
     }
 
-    public double subtract(double num1, double num2) {
+    public static double subtract(double num1, double num2) {
         return (num1 - num2);
     }
 
-    public double multiply(double num1, double num2) {
+    public static double multiply(double num1, double num2) {
         return (num1 * num2);
     }
 
-    public double divide(double num1, double num2) {
+    public static double divide(double num1, double num2) {
         return (num1 / num2);
     }
-    public void invalid() {
+
+    public static void invalid() {
         System.out.println("Invalid operator. Please try again.");
     }
 }
