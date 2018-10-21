@@ -21,7 +21,9 @@ public class CalculatorActivity extends AppCompatActivity {
             R.id.button4, R.id.button5, R.id.button6,
             R.id.button7, R.id.button8, R.id.button9,
     };
-    //private int[] numProcess = new int[];
+    private int[] numProcess;
+    private String operator;
+    private double memory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,46 @@ public class CalculatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         mAddButton = (Button) findViewById(R.id.button_add);
-        mAddButton.setOnClickListener();
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                operator = "+";
+            }
+        });
 
         mSubButton = (Button) findViewById(R.id.button_sub);
+        mSubButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                operator = "-";
+            }
+        });
+
         mMulButton = (Button) findViewById(R.id.button_mul);
+        mMulButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                operator = "*";
+            }
+        });
+
         mDivButton = (Button) findViewById(R.id.button_div);
-        mAddButton = (Button) findViewById(R.id.button_div);
-        mDotButton = (Button) findViewById(R.id.button_dot);
+        mDivButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                operator = "+";
+            }
+        });
+
+        //mDotButton = (Button) findViewById(R.id.button_dot);
+
         mEqualsButton = (Button) findViewById(R.id.button_equals);
+        mEqualsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                double answer = CalculatorProcessor.checkOperation(numProcess[0], numProcess[1], operator);
+                Toast.makeText(CalculatorActivity.this, "The answer is " + answer, Toast.LENGTH_SHORT).show();
+                memory = answer;
+
+                numProcess = null;
+                operator = null;
+            }
+        });
         mNumButtons = new Button[mNumButtonIds.length];
         for (int i = 0; i < mNumButtons.length; i++) {
             mNumButtons[i] = (Button) findViewById(mNumButtonIds[i]);
@@ -44,11 +78,15 @@ public class CalculatorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String buttonValue = ((Button) v).getText().toString();
-
-                    Toast.makeText(CalculatorActivity.this, "Clicked " + buttonValue, Toast.LENGTH_SHORT).show();
-                }
-            });
+                        if (numProcess.length != 0) {
+                            numProcess[numProcess.length - 1] = Integer.parseInt(buttonValue);
+                        } else {
+                            numProcess[0] = Integer.parseInt(buttonValue);
+                        }
+                        Toast.makeText(CalculatorActivity.this, "Clicked " + buttonValue, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
-    }
 
-}
+    }
