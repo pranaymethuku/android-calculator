@@ -1,41 +1,35 @@
 package com.calculator.android.calculator;
 
-public class Calc_Processor {
-    public static void checkOperation(double num1, double num2, String operator) {
+public class CalculatorProcessor {
+    public static double checkOperation(double num1, double num2, String operator) {
         if (operator.equals("+")) {
-            add(num1, num2);
+            return add(num1, num2);
         }
         else if (operator.equals("-")) {
-            subtract(num1, num2);
+            return subtract(num1, num2);
         }
         else if (operator.equals("*")) {
-            multiply(num1, num2);
+            return multiply(num1, num2);
         }
         else if (operator.equals("/")) {
-            divide(num1, num2);
+            return divide(num1, num2);
         }
-        else {
-            invalid();
-        }
-
+        return (1.79769313486231570E+308);
     }
 
-    public double add(double num1, double num2) {
+    public static double add(double num1, double num2) {
         return (num1 + num2);
     }
 
-    public double subtract(double num1, double num2) {
+    public static double subtract(double num1, double num2) {
         return (num1 - num2);
     }
 
-    public double multiply(double num1, double num2) {
+    public static double multiply(double num1, double num2) {
         return (num1 * num2);
     }
 
-    public double divide(double num1, double num2) {
+    public static double divide(double num1, double num2) {
         return (num1 / num2);
-    }
-    public void invalid() {
-        System.out.println("Invalid operator. Please try again.");
     }
 }
