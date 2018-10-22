@@ -6,6 +6,7 @@
     <string name="mul_button">*</string>
     <string name="div_button">/</string>
     <string name="equals_button">=</string>
+    <string name="clear_button">Clear</string>
     <string name="dot_button">.</string>
     <string name="button_1">1</string>
     <string name="button_2">2</string>

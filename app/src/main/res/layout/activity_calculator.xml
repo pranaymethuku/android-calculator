@@ -294,4 +294,11 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <Button
+        android:id="@+id/button_clear"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_button" />
+
 </LinearLayout>

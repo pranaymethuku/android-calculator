@@ -14,19 +14,22 @@ public class CalculatorActivity extends AppCompatActivity {
     private Button mDivButton;
     private Button mDotButton;
     private Button mEqualsButton;
-    private Button[] mNumButtons;
+    private Button mClearButton;
+    private Button[] mNumButtons = new Button[10];
     private final int[] mNumButtonIds = {
             R.id.button0,
             R.id.button1, R.id.button2, R.id.button3,
             R.id.button4, R.id.button5, R.id.button6,
             R.id.button7, R.id.button8, R.id.button9,
     };
-    private int[] numProcess;
-    private String operator;
-    private double memory;
+
+    private double[] numProcess = new double[3]; //Contains the numbers which are to be operated on; the final element determines whether the number to be added to the array goes in the first or second position
+    private String operator; //Contains the operator
+    private double memory; //Contains the answer obtained from the previous calculation in case the user wishes to do further operations on the answer
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initializes buttons for the operators and the numbers from 0-9
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
@@ -54,7 +57,18 @@ public class CalculatorActivity extends AppCompatActivity {
         mDivButton = (Button) findViewById(R.id.button_div);
         mDivButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                operator = "+";
+                operator = "/";
+            }
+        });
+
+        mClearButton = (Button) findViewById(R.id.button_clear);
+        mClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numProcess[0] = 0;
+                numProcess[1] = 0;
+                numProcess[2] = 0;
+                Toast.makeText(CalculatorActivity.this, "Cleared!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -67,21 +81,26 @@ public class CalculatorActivity extends AppCompatActivity {
                 Toast.makeText(CalculatorActivity.this, "The answer is " + answer, Toast.LENGTH_SHORT).show();
                 memory = answer;
 
-                numProcess = null;
+                numProcess = new double[3];
+                numProcess[2] = 1;
+                numProcess[0] = memory;
                 operator = null;
             }
         });
         mNumButtons = new Button[mNumButtonIds.length];
+        numProcess[2] = 0;
         for (int i = 0; i < mNumButtons.length; i++) {
             mNumButtons[i] = (Button) findViewById(mNumButtonIds[i]);
             mNumButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String buttonValue = ((Button) v).getText().toString();
-                        if (numProcess.length != 0) {
-                            numProcess[numProcess.length - 1] = Integer.parseInt(buttonValue);
-                        } else {
+                        if (numProcess[2] == 1) {
+                            numProcess[1] = Integer.parseInt(buttonValue);
+                            numProcess[2] = 0;
+                        } else if (numProcess[2] == 0) {
                             numProcess[0] = Integer.parseInt(buttonValue);
+                            numProcess[2] = 1;
                         }
                         Toast.makeText(CalculatorActivity.this, "Clicked " + buttonValue, Toast.LENGTH_SHORT).show();
                     }
